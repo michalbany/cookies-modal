@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies</title>
+
+    <!-- Načtení CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/iframemanager@1.2.5/dist/iframemanager.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.css" />
+
+    <!-- Načtení externích Scriptů -->
+    <script defer src="https://cdn.jsdelivr.net/gh/orestbida/iframemanager@1.2.5/dist/iframemanager.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.umd.js"></script>
+	
+    <!-- Načtení interních Scriptů -->
+	<script defer src="./Cookies.js"></script>
+
+    <!-- @added: Google Consent 2 -->
+    <script>
+        // Default values
+		window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+
+			gtag('consent', 'default', {
+				'analytics_storage': "denied",
+				'ad_storage': "denied",
+				'ad_user_data': "denied",
+				'ad_personalization': "denied",
+				'personalization_storage': "denied",
+				'functionality_storage': "denied",
+				'security_storage': "denied"
+			});
+		</script>
+		
+		<script>
+        // Update values on change preferences
+		window.addEventListener('cc:onChange', ({detail}) => {
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+
+			gtag('consent', 'update', {
+				'analytics_storage': detail.cookie.categories.includes('analytics') ? "granted" : "denied",
+				'ad_storage': detail.cookie.categories.includes('marketing') ? "granted" : "denied",
+				'ad_user_data': detail.cookie.categories.includes('marketing') ? "granted" : "denied",
+				'ad_personalization': detail.cookie.categories.includes('marketing') ? "granted" : "denied",
+				'personalization_storage': detail.cookie.categories.includes('functional') ? "granted" : "denied",
+				'functionality_storage': detail.cookie.categories.includes('functional') ? "granted" : "denied",
+				'security_storage': detail.cookie.categories.includes('necessary') ? "granted" : "denied",
+			});
+		});
+
+        // Update values on site load
+		window.addEventListener('cc:onConsent', ({detail}) => {
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+
+			gtag('consent', 'update', {
+				'analytics_storage': detail.cookie.categories.includes('analytics') ? "granted" : "denied",
+				'ad_storage': detail.cookie.categories.includes('marketing') ? "granted" : "denied",
+				'ad_user_data': detail.cookie.categories.includes('marketing') ? "granted" : "denied",
+				'ad_personalization': detail.cookie.categories.includes('marketing') ? "granted" : "denied",
+				'personalization_storage': detail.cookie.categories.includes('functional') ? "granted" : "denied",
+				'functionality_storage': detail.cookie.categories.includes('functional') ? "granted" : "denied",
+				'security_storage': detail.cookie.categories.includes('necessary') ? "granted" : "denied",
+			});
+		});
+    </script>
+
+</head>
+<body>
+
+    <script type="text/plain" data-category="analytics">
+        // Google analytics
+    </script>
+
+    <script type="text/plain" data-category="marketing">
+        // All marketing scripts
+    </script>
+
+    <script type="text/plain" data-category="functional">
+        // All functional scripts
+    </script>
+
+    <!-- Pokud je v kódu <noscript> a uživatel má vypnutý JS v prohlížeči, tak se pošle vždy vše -->
+
+
+    <!-- Tlačítko pro změnu nastavení -->
+    <button style="position: fixed; bottom: 10px; left: 10px; width: auto; margin: 0; background-color: black; border: none; padding: 10px 10px; border-radius: 10px; cursor: pointer; z-index:99999;" data-cc="show-preferencesModal" type="button">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+			<path d="M21.598 11.064a1.006 1.006 0 0 0-.854-.172A2.938 2.938 0 0 1 20 11c-1.654 0-3-1.346-3.003-2.938.005-.034.016-.134.017-.168a.998.998 0 0 0-1.254-1.006A3.002 3.002 0 0 1 15 7c-1.654 0-3-1.346-3-3 0-.217.031-.444.099-.716a1 1 0 0 0-1.067-1.236A9.956 9.956 0 0 0 2 12c0 5.514 4.486 10 10 10s10-4.486 10-10c0-.049-.003-.097-.007-.16a1.004 1.004 0 0 0-.395-.776zM8.5 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-2 8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm2.5-6.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm3.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+		</svg>
+	</button>
+
+
+    <!-- @version < 2.8 Tlačítko pro změnu nastavení -->
+		<button style="position: fixed; bottom: 10px; left: 10px; width: auto; margin: 0; background-color: black; border: none; padding: 10px 10px; border-radius: 10px; cursor: pointer; z-index:99999;" data-cc="c-settings" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M21.598 11.064a1.006 1.006 0 0 0-.854-.172A2.938 2.938 0 0 1 20 11c-1.654 0-3-1.346-3.003-2.938.005-.034.016-.134.017-.168a.998.998 0 0 0-1.254-1.006A3.002 3.002 0 0 1 15 7c-1.654 0-3-1.346-3-3 0-.217.031-.444.099-.716a1 1 0 0 0-1.067-1.236A9.956 9.956 0 0 0 2 12c0 5.514 4.486 10 10 10s10-4.486 10-10c0-.049-.003-.097-.007-.16a1.004 1.004 0 0 0-.395-.776zM8.5 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-2 8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm2.5-6.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm3.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+            </svg>
+        </button>
+    
+</body>
+</html>
